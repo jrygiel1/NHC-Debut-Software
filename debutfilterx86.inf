@@ -9,7 +9,7 @@ CatalogFile=debutfilterx86.cat
 
 ; Distribution Media information
 [SourceDisksNames]
-1 = %DiskId1%,,,""
+0 = %DiskId1%,,,""
 
 [SourceDisksFiles]
 debutfilterx86.sys  = 1,,
@@ -43,14 +43,14 @@ DelReg = ClassFilter_DelReg
 DelService = debutfilter, , debutfilter_Service_Inst, debutfilter_EventLog_Inst
 
 [ClassFilter_AddReg]
-HKLM, System\CurrentControlSet\Control\Class\{4d36e96c-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00010008, debutfilter
-HKLM, SYSTEM\CurrentControlSet\Services\debutfilter, KeepAlive, %REG_DWORD%, 0
+HKLM, System\CurrentControlSet\Control\Class\UpperFilters, debutfilter
+HKLM, SYSTEM\CurrentControlSet\Services\debutfilter, KeepAlive, %REG_DWORD%, 1
 HKLM, SYSTEM\CurrentControlSet\services\debutfilter, DOS_DEVICE_NAME, %REG_SZ%, DebutFilter		; Device name to connect to
 HKLM, SOFTWARE\NCH Swift Sound\Debut\debutfilter, , %REG_SZ%,  ;
-HKLM, SOFTWARE\NCH Swift Sound\Debut\debutfilter, Driver, %REG_DWORD%, 0;
+HKLM, SOFTWARE\NCH Swift Sound\Debut\debutfilter, Driver, %REG_DWORD%, 1;
 
 [ClassFilter_DelReg]
-HKLM, System\CurrentControlSet\Control\Class\{4d36e96c-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00018002, debutfilter
+HKLM, System\CurrentControlSet\Control\Class\UpperFilters, debutfilter
 HKLM, SYSTEM\CurrentControlSet\Services\debutfilter, KeepAlive, %REG_DWORD%, 0
 HKLM, SYSTEM\CurrentControlSet\services\debutfilter, DOS_DEVICE_NAME, %REG_SZ%, DebutFilter		; Device name to connect to
 HKLM, SOFTWARE\NCH Swift Sound\Debut\debutfilter, , %REG_SZ%,  ;
@@ -61,7 +61,7 @@ DisplayName = %Debut.SvcDesc%
 ServiceType = %SERVICE_KERNEL_DRIVER%
 StartType = %SERVICE_DEMAND_START%
 ErrorControl = %SERVICE_ERROR_IGNORE%
-ServiceBinary = %12%\debutfilterx86.sys
+ServiceBinary = %12%\debutfilter.sys
 
 [debutfilter_EventLog_Inst]
 AddReg = debutfilter_EventLog_AddReg
@@ -78,7 +78,7 @@ DiskId1 = ""
 ; Useful constants
 SERVICE_KERNEL_DRIVER = 1
 SERVICE_DEMAND_START = 3
-SERVICE_ERROR_IGNORE = 0
+SERVICE_ERROR_IGNORE = 1
 REG_EXPAND_SZ  = 0x00020000
 REG_SZ = 0x00000000
 REG_DWORD = 0x00010001
